@@ -2,6 +2,9 @@ package nicolas.wiedel.canyonbunny.util;
 
 import com.badlogic.gdx.graphics.Color;
 
+/***
+ * Sammlung aller Konstanten die gesammelt in dieser Klasse gehalten werden
+ */
 public class Constants {
 
     // Die Hintergrundfarbe, mit der grundlegend gezeichnet wird.
