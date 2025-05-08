@@ -1,34 +1,44 @@
 package nicolas.wiedel.canyonbunny;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.utils.ScreenUtils;
+import nicolas.wiedel.canyonbunny.game.WorldController;
+import nicolas.wiedel.canyonbunny.game.WorldRenderer;
+import nicolas.wiedel.canyonbunny.util.Constants;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class CanyonBunnyMain extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private Texture image;
+public class CanyonBunnyMain implements ApplicationListener {
+
+    private static final String TAG = CanyonBunnyMain.class.getSimpleName();
+
+    private WorldController worldController;
+    private WorldRenderer worldRenderer;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
     }
+
 
     @Override
     public void render() {
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        batch.begin();
-        batch.draw(image, 140, 210);
-        batch.end();
+        ScreenUtils.clear(Constants.CORNFLOWERBLUE);
+    }
+
+    @Override
+    public void resize(int i, int i1) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        image.dispose();
     }
 }
