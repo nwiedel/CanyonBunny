@@ -45,7 +45,7 @@ public class WorldController {
             // SpritGröße definieren: 1m x 1m in der Gameworld
             spr.setSize(1, 1);
             // Origin auf Spritecenter setzen
-            spr.setOrigin(spr.getWidth() / 2, spr.getHeight() / 2);
+            spr.setOrigin(spr.getWidth() / 2.0f, spr.getHeight() / 2.0f);
             // Zufällige Position berechnen
             float randomX = MathUtils.random(-2.0f, 2.0f);
             float randomY = MathUtils.random(-2.0f, 2.0f);
