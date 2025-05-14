@@ -15,4 +15,7 @@ public class Constants {
 
     // Die sichtbare GameWorld is 5 Meter hoch.
     public static final float VIEWPORT_HEIGHT = 5.0f;
+
+    // Der Speicherort des TextureAtlas für alle Grafiken
+    public static final String TEXTURE_ATLAS_OBJECTS = "images/canyonbunny.pack";
 }
