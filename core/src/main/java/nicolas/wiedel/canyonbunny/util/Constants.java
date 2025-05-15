@@ -18,4 +18,7 @@ public class Constants {
 
     // Der Speicherort des TextureAtlas für alle Grafiken
     public static final String TEXTURE_ATLAS_OBJECTS = "images/canyonbunny.pack";
+
+    // Der Speicherort des Bildes für Level 01
+    public static final String LEVEL_01 = "levels/level-01.png";
 }

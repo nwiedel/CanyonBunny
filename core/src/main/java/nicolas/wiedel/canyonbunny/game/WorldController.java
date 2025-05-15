@@ -7,7 +7,9 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import nicolas.wiedel.canyonbunny.util.CameraHelper;
 
 
@@ -48,15 +50,15 @@ public class WorldController extends InputAdapter {
     private void initTestObjects(){
         // Array von 5 Sprites
         testSprites = new Sprite[5];
-        // ein leeres POT-sized Pixmap mit 8 bit RGBA pixel data erstellen
-        int width = 32;
-        int height = 32;
-        Pixmap pixmap = createProceduralPixmap(width, height);
-        // Texture aus Pixmapdata erstellen
-        Texture texture = new Texture(pixmap);
-        // neue Sprites auf Grundlage der Textur erstellen
+        // Liste von TextureRegions
+        Array<TextureRegion> regions = new Array<>();
+        regions.add(Assets.INSTANCE.bunny.head);
+        regions.add(Assets.INSTANCE.feather.feather);
+        regions.add(Assets.INSTANCE.goldCoin.goldCoin);
+
+        // neue zufälliges Sprites aus dem Array erstellen
         for (int i = 0; i < testSprites.length; i++){
-            Sprite spr = new Sprite(texture);
+            Sprite spr = new Sprite(regions.random());
             // SpritGröße definieren: 1m x 1m in der Gameworld
             spr.setSize(1, 1);
             // Origin auf Spritecenter setzen
