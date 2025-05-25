@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import nicolas.wiedel.canyonbunny.game.Assets;
 
-public class Mountains extends AbstractGaameObject {
+public class Mountains extends AbstractGameObject {
 
     private TextureRegion regMountainLeft;
     private TextureRegion regMountainRight;

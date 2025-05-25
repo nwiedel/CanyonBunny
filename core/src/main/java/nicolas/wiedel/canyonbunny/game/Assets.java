@@ -78,7 +78,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public AssetRock(TextureAtlas atlas){
             edge = atlas.findRegion("rock_edge");
-            middle = atlas.findRegion("rock-middle");
+            middle = atlas.findRegion("rock_middle");
         }
     }
 
@@ -107,12 +107,12 @@ public class Assets implements Disposable, AssetErrorListener {
         public final AtlasRegion waterOverlay;
 
         public AssetLevelDecoration(TextureAtlas atlas){
-            cloud01 = atlas.findRegion("cloud1");
-            cloud02 = atlas.findRegion("cloud2");
-            cloud03 = atlas.findRegion("cloud3");
+            cloud01 = atlas.findRegion("cloud01");
+            cloud02 = atlas.findRegion("cloud02");
+            cloud03 = atlas.findRegion("cloud03");
             mountainLeft = atlas.findRegion("mountain_left");
             mountainRight = atlas.findRegion("mountain_right");
-            waterOverlay = atlas.findRegion("water-overlay");
+            waterOverlay = atlas.findRegion("water_overlay");
         }
     }
 }

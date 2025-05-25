@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import nicolas.wiedel.canyonbunny.game.Assets;
 
-public class Clouds extends AbstractGaameObject {
+public class Clouds extends AbstractGameObject {
 
     private float length;
 
@@ -59,7 +59,7 @@ public class Clouds extends AbstractGaameObject {
         }
     }
 
-    private class Cloud extends AbstractGaameObject {
+    private class Cloud extends AbstractGameObject {
         private TextureRegion regCloud;
 
         public Cloud(){}

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import nicolas.wiedel.canyonbunny.game.Assets;
 
-public class WaterOverlay extends AbstractGaameObject {
+public class WaterOverlay extends AbstractGameObject {
 
     private TextureRegion regWaterOverlay;
     private float length;

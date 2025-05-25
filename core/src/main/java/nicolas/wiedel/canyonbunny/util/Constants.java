@@ -16,9 +16,18 @@ public class Constants {
     // Die sichtbare GameWorld is 5 Meter hoch.
     public static final float VIEWPORT_HEIGHT = 5.0f;
 
+    // GUI Breite
+    public static final float VIEWPORT_GUI_WIDTH = 800.0f;
+
+    // GUI Höhe
+    public static final float VIEWPORT_GUI_HEIGHT = 480.0f;
+
     // Der Speicherort des TextureAtlas für alle Grafiken
     public static final String TEXTURE_ATLAS_OBJECTS = "images/canyonbunny.pack";
 
     // Der Speicherort des Bildes für Level 01
     public static final String LEVEL_01 = "levels/level-01.png";
+
+    // Menge der extra Leben zum Start
+    public static final int LIVES_START = 3;
 }

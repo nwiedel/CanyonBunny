@@ -7,7 +7,7 @@ import nicolas.wiedel.canyonbunny.game.Assets;
 /**
  * Klasse für die Felsen, die als Untergrud dienen
  */
-public class Rock extends AbstractGaameObject {
+public class Rock extends AbstractGameObject {
 
     public TextureRegion regEdge;
     public TextureRegion regMiddle;
@@ -69,6 +69,7 @@ public class Rock extends AbstractGaameObject {
                 reg.getRegionX(), reg.getRegionY(),
                 reg.getRegionWidth(), reg.getRegionHeight(),
                 false, false);
+            relX += dimension.x;
         }
 
         // rechte Seite zeichnen
