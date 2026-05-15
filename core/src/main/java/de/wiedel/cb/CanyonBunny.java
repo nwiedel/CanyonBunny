@@ -42,6 +42,7 @@ public class CanyonBunny implements ApplicationListener {
     @Override
     public void resize(int width, int height) {
         worldRenderer.reseize(width, height);
+        Gdx.app.debug(TAG, "bunnyHead position: " + worldController.level.bunnyHead.jumpState);
     }
 
     @Override

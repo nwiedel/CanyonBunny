@@ -13,7 +13,6 @@ import de.wiedel.cb.game.objects.GoldCoin;
 import de.wiedel.cb.game.objects.Rock;
 import de.wiedel.cb.utils.CameraHelper;
 import de.wiedel.cb.utils.Constants;
-import jdk.javadoc.internal.doclets.formats.html.markup.Head;
 
 public class WorldController extends InputAdapter {
 
