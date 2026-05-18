@@ -23,6 +23,9 @@ public class WorldController extends InputAdapter {
     public int lives;
     public int score;
 
+    /** Zeitverzögerung nach Game Over */
+    private float timeLeftGameOverDelay;
+
     /** Vierecke für die Kollisionserkennung */
     private Rectangle r1 = new Rectangle();
     private Rectangle r2 = new Rectangle();
@@ -52,6 +55,7 @@ public class WorldController extends InputAdapter {
     /** Spielelogik */
     public void update(float delta){
         handleDebugInput(delta);
+        handleInputGame(delta);
         level.update(delta);
         testCollision();
         cameraHelper.update(delta);
@@ -144,7 +148,7 @@ public class WorldController extends InputAdapter {
             if (feather.collected){
                 continue;
             }
-            r1.set(feather.position.x, feather.position.y,
+            r2.set(feather.position.x, feather.position.y,
                 feather.bounds.width, feather.bounds.height);
             if (!r1.overlaps(r2)){
                 continue;
@@ -152,6 +156,14 @@ public class WorldController extends InputAdapter {
             onCollisionBunnyHeadWithFeather(feather);
             break;
         }
+    }
+
+    public boolean isGameOver(){
+        return lives < 0;
+    }
+
+    public boolean isPlayerInWater(){
+        return level.bunnyHead.position.y < -5f;
     }
 
     private Pixmap createProceduralPixmap(int width, int height){
@@ -164,6 +176,28 @@ public class WorldController extends InputAdapter {
         pixmap.setColor(0, 1, 1, 1);
         pixmap.drawRectangle(0, 0, width, height);
         return pixmap;
+    }
+
+    private void handleInputGame(float delta){
+        if (cameraHelper.hasTarget(level.bunnyHead)){
+            // Spieler Bewegung
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+                level.bunnyHead.velocity.x = -level.bunnyHead.terminalVelocity.x;
+            } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+                level.bunnyHead.velocity.x = level.bunnyHead.terminalVelocity.x;
+            } else {
+                // für nicht Desktop Platform
+                if (Gdx.app.getType() != Application.ApplicationType.Desktop) {
+                    level.bunnyHead.velocity.x = level.bunnyHead.terminalVelocity.x;
+                }
+            }
+            // Bunny springt
+            if (Gdx.input.isTouched() || Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+                level.bunnyHead.setJumping(true);
+            } else {
+                level.bunnyHead.setJumping(false);
+            }
+        }
     }
 
     private void handleDebugInput(float delta){

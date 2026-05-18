@@ -30,5 +30,8 @@ public class Constants {
 
     /** Dauer, die die Feder Wirkung zeigt. */
     public static final float ITEM_FEATHER_POWERUP_DURATION = 9f;
+
+    /** Verzögerung nach gameover */
+    public static final float TIME_DELAY_GAME_OVER = 3f;
 }
 
