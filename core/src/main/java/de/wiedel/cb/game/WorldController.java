@@ -46,6 +46,7 @@ public class WorldController extends InputAdapter {
     private void initLevel(){
         score = 0;
         level = new Level(Constants.LEVEL_01);
+        cameraHelper.setTarget(level.bunnyHead);
     }
 
     /** Spielelogik */
@@ -63,6 +64,12 @@ public class WorldController extends InputAdapter {
         if (keycode == Input.Keys.R){
             init();
             Gdx.app.debug(TAG, "Game world zurückgesetzt!");
+        }
+
+        // Kamera wechseln zwischen Folgen und Steuern
+        else if (keycode == Input.Keys.ENTER){
+            cameraHelper.setTarget(cameraHelper.hasTarget() ? null : level.bunnyHead);
+            Gdx.app.debug(TAG, "Kameraverfolgung aktiviert: " + cameraHelper.hasTarget());
         }
         return false;
     }
@@ -164,26 +171,28 @@ public class WorldController extends InputAdapter {
             return;
         }
 
-        // Kamera Kontrolle (bewegen)
-        float camMoveSpeed = 5f * delta;
-        float camMoveSpeedAccelerator = 5f;
-        if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)){
-            camMoveSpeed *= camMoveSpeedAccelerator;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            moveCamera(-camMoveSpeed, 0);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            moveCamera(camMoveSpeed, 0);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-            moveCamera(0, camMoveSpeed);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            moveCamera(0, -camMoveSpeed);
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)){
-            cameraHelper.setPosition(0, 0);
+        if (!cameraHelper.hasTarget(level.bunnyHead)){
+            // Kamera Kontrolle (bewegen)
+            float camMoveSpeed = 5f * delta;
+            float camMoveSpeedAccelerator = 5f;
+            if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)){
+                camMoveSpeed *= camMoveSpeedAccelerator;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+                moveCamera(-camMoveSpeed, 0);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+                moveCamera(camMoveSpeed, 0);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+                moveCamera(0, camMoveSpeed);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+                moveCamera(0, -camMoveSpeed);
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)){
+                cameraHelper.setPosition(0, 0);
+            }
         }
 
         // Kamera Kontrolle (Zoom)
