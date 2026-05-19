@@ -33,6 +33,9 @@ public class CameraHelper {
 
         position.x = target.position.x + target.origin.x;
         position.y = target.position.y + target.origin.y;
+
+        // Verhindere, dass die Kamera zu weit herunter geht.
+        position.y = Math.max(-1f, position.y);
     }
 
     /** getter und setter */

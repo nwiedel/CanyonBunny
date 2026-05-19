@@ -3,10 +3,10 @@ package de.wiedel.cb.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import de.wiedel.cb.utils.Constants;
+import org.w3c.dom.html.HTMLImageElement;
 
 public class WorldRenderer implements Disposable {
 
@@ -72,8 +72,10 @@ public class WorldRenderer implements Disposable {
         batch.setProjectionMatrix(cameraGUI.combined);
         batch.begin();
         renderGuiScore(batch);
+        renderGuiFeatherPowerup(batch);
         renderGuiExtraLive(batch);
         renderGuiFpsCounter(batch);
+        renderGuiGameOverMessage(batch);
         batch.end();
     }
     private void renderGuiScore(SpriteBatch batch){
@@ -94,8 +96,38 @@ public class WorldRenderer implements Disposable {
             }
             batch.draw(Assets.INSTANCE.bunny.head,
                 x + i * 50, y, 50, 50,
-                120, 100, 0.35f, -0.35f, 0);
+                120, 100, 0.35f, -0.35f,
+                0);
             batch.setColor(1, 1, 1, 1);
+        }
+    }
+    private void renderGuiGameOverMessage(SpriteBatch batch){
+        float x = cameraGUI.viewportWidth / 2;
+        float y = cameraGUI.viewportHeight / 2;
+        if (worldController.isGameOver()){
+            BitmapFont fontGameOver = Assets.INSTANCE.fonts.defaultBig;
+            fontGameOver.setColor(1, 0.75f, 0.25f, 1);
+            fontGameOver.draw(batch, "GAME OVER", x, y);
+            fontGameOver.setColor(1, 1, 1, 1);
+        }
+    }
+    private void renderGuiFeatherPowerup(SpriteBatch batch){
+        float x = -15;
+        float y = 30;
+        float timeLeftFeatherPowerup = worldController.level.bunnyHead.timeLeftFeatherPowerUp;
+        if (timeLeftFeatherPowerup > 0){
+            // Icon soll ausfaden
+            if (timeLeftFeatherPowerup < 4){
+                if (((int)(timeLeftFeatherPowerup * 5) % 2) != 0){
+                    batch.setColor(1, 1, 1, 0.5f);
+                }
+            }
+            batch.draw(Assets.INSTANCE.feather.feather,
+                x, y, 50, 50,
+                100, 100, 0.35f, -0.35f,0);
+            batch.setColor(1, 1, 1, 1);
+            Assets.INSTANCE.fonts.defaultSmall.draw(batch,
+                "" + (int)timeLeftFeatherPowerup, x + 60, y + 57);
         }
     }
     private void renderGuiFpsCounter(SpriteBatch batch){
