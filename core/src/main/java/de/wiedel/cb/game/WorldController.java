@@ -43,6 +43,7 @@ public class WorldController extends InputAdapter {
         Gdx.input.setInputProcessor(this);
         cameraHelper = new CameraHelper();
         lives = Constants.LIVES_START;
+        timeLeftGameOverDelay = 0;
         initLevel();
     }
 
@@ -55,10 +56,27 @@ public class WorldController extends InputAdapter {
     /** Spielelogik */
     public void update(float delta){
         handleDebugInput(delta);
-        handleInputGame(delta);
+
+        if (isGameOver()){
+            timeLeftGameOverDelay -= delta;
+            if (timeLeftGameOverDelay < 0){
+                init();
+            }
+        } else {
+            handleInputGame(delta);
+        }
         level.update(delta);
         testCollision();
         cameraHelper.update(delta);
+
+        if (!isGameOver() && isPlayerInWater()){
+            lives--;
+            if (isGameOver()){
+                timeLeftGameOverDelay = Constants.TIME_DELAY_GAME_OVER;
+            } else {
+                initLevel();
+            }
+        }
     }
 
     /** InputAdapter Methoden */
